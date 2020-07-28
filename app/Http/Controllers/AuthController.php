@@ -39,22 +39,6 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
         if ($v->fails()) return apiReturn($request->all(), 'Validation Failed', 'failed', [$v->errors()]);
-        // return $validator;
-        // $errors = [];
-        // if(empty($request['username'])){
-        //     $errors[] = 'Username is required.';
-        // } else if(strlen($request['username']) < 4){
-        //     $errors[] = 'The username must be at least 4 characters..';
-        // }
-        //
-        // if(empty($request['password'])){
-        //     $errors[] = 'Password is required.';
-        // } else if(strlen($request['password']) < 6){
-        //     $errors[] = 'The password must be at least 6 characters..';
-        // }
-        // if (!empty($errors)) return apiReturn($request->all(), 'Validation Failed', 'failed', $errors);
-        // return 'sad';
-        // if ($v->fails()) return apiReturn($request->all(), 'Validation Failed', 'failed', [$v->errors()]);
 
         $credentials = $request->only(['username', 'password']);
         // return $credentials;
@@ -76,9 +60,6 @@ class AuthController extends Controller
 
         // $users = User::orderBy('id', 'asc');
         $users = datatables()->of(User::query())->make(true);
-        // Filter Users
-        // $show = !empty($request->show) ? $request->show : 10;
-        // $users = $users->get();
 
         return apiReturn($users);
         // return response()->json($users);
